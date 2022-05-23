@@ -1,0 +1,16 @@
+name: Artifacts
+
+on: push
+
+env:
+  FILE_NAME: hello-world-log
+
+jobs:
+  create-artifact:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Hello world from Artifacts workflow!" > ${{ env.FILE_NAME }}.txt
+    - uses: actions/upload-artifact@v1.0.0
+      with:
+        name: text_file
+        path: ./${{ env.FILE_NAME }}
